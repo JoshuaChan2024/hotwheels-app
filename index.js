@@ -24,9 +24,9 @@ app.get('/add', (req, res) => {
 
 // Action to add a new item
 app.post('/add', (req, res) => {
-    const { name, description } = req.body;
+    const { name, description, type } = req.body;
     if (name) {
-        collection.push({ id: nextId++, name, description });
+        collection.push({ id: nextId++, name, description, type });
     }
     res.redirect('/');
 });
@@ -45,11 +45,12 @@ app.get('/edit/:id', (req, res) => {
 // Action to update an item
 app.post('/update/:id', (req, res) => {
     const id = parseInt(req.params.id);
-    const { name, description } = req.body;
+    const { name, description, type } = req.body;
     const item = collection.find(i => i.id === id);
     if (item) {
         item.name = name;
         item.description = description;
+        item.type = type;
     }
     res.redirect('/');
 });
