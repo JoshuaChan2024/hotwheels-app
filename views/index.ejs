@@ -27,14 +27,16 @@
                     <tr>
                         <th>Car Name</th>
                         <th>Description</th>
+                        <th>Type</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% collection.forEach(item => { %>
-                        <tr>
+                        <tr class="<%= item.type === 'RTH' ? 'table-secondary' : (item.type === 'STH' || item.type === 'Chase') ? 'table-warning' : '' %>">
                             <td><%= item.name %></td>
                             <td><%= item.description %></td>
+                            <td><strong><%= item.type %></strong></td>
                             <td>
                                 <a href="/edit/<%= item.id %>" class="btn btn-sm btn-warning">Edit</a>
                                 <form action="/delete/<%= item.id %>" method="POST" style="display:inline;">
